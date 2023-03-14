@@ -1,5 +1,5 @@
 # 2023-BUAA-Image-Processing
 Homeworks for Image Processing, 2023 BUAA
 
-## check that you have install Opencv for java
+本实现采用纯 Java 方式
 
