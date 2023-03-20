@@ -38,7 +38,25 @@ public class Utils {
             for (int x = 0; x < width; x++) {
                 int pixel = image.getRGB(x, y);
                 Color color = new Color(pixel);
-                int gray = (color.getRed() + color.getGreen() + color.getBlue()) / 3;
+                int max, min;
+                {
+                    max = color.getBlue();
+                    min = color.getRed();
+                    if(color.getRed() > color.getBlue()) {
+                        min = color.getBlue();
+                        if(color.getBlue() > color.getGreen()) {
+                            min = color.getGreen();
+                        }
+                        max = color.getRed();
+                        if(color.getRed()<color.getGreen()) {
+                            max = color.getGreen();
+                        }
+                    }
+
+                }
+
+                int gray = (int) (0.8*max+0.2*min);
+//                int gray = (int)(0.3 * color.getRed() + 0.59*color.getGreen() + 0.11*color.getBlue());
                 // 将灰度值设置为像素的RGB颜色分量
                 Color grayColor = new Color(gray, gray, gray);
                 grayImage.setRGB(x, y, grayColor.getRGB());

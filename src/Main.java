@@ -1,14 +1,8 @@
-import org.opencv.core.*;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 
 public class Main {
-    static {
-        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-    }
-
     public static void main(String[] args) {
         String imgPath = "data\\dog.jpg";
 
@@ -26,11 +20,11 @@ public class Main {
         // 仅做直方图均衡
         BufferedImage dst = ImgCalcHist(src);
         Utils.writeImg(dst, processed_src_2);
-        // 仅灰度线性拉伸
+        // 先做直方图均衡，再做灰度线性拉伸
         BufferedImage _dst3 = ImgCalcHist(src);
         BufferedImage dst3 = lineEnhance(_dst3);
         Utils.writeImg(dst3, processed_src_3);
-        // 先做直方图均衡，再做灰度线性拉伸
+        // 仅灰度线性拉伸
         BufferedImage dst4 = lineEnhance(src);
         Utils.writeImg(dst4, processed_src_4);
 
